@@ -1,4 +1,4 @@
-// lowerBound = first value which is greater than or equals to x
+// lowerBound = first value greater than or equals to x
 
 function lowerBound (arr, x) {
     let n = arr.length;
