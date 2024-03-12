@@ -1,10 +1,7 @@
 // lowerBound = first value greater than or equals to x
 
 function lowerBound (arr, x) {
-    let n = arr.length;
-    let lo = 0;
-    let hi = n-1;
-    let result = n;
+    let n = arr.length, lo = 0, hi = n-1, result = n;
     while(lo <= hi) {
         let mid = Math.floor((lo+hi)/2);
         if(arr[mid] >= x) {
@@ -14,7 +11,6 @@ function lowerBound (arr, x) {
             lo = mid + 1;
         }
     }
-
     return result;
 }
 
