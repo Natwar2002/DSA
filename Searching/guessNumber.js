@@ -24,3 +24,6 @@ var guessNumber = function (n) {
     }
     return -1;
 }
+
+let n = 20;
+console.log(guessNumber(20));
