@@ -6,7 +6,6 @@ var takeCharacters = function(s, k) {
         if(s[i] == 'b') countB++;
         if(s[i] == 'c') countC++;
     }
-    console.log(countA, countB, countC);
 
     if (countA < k || countB < k || countC < k) return -1;
 
