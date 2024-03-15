@@ -41,4 +41,6 @@ var mergeSortCount = function (left, right, result) {
         count++;
         sorted[k++] = right[j++];
     }
+
+    return sorted;
 }
