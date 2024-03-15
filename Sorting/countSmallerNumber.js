@@ -37,5 +37,7 @@ var mergeSortCount = function (left, right, result) {
         sorted[k++] = left[i++];
     }
 
-    while(j < n)
+    while(j < n) {
+        count++;
+    }
 }
