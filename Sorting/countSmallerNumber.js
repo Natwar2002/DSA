@@ -2,7 +2,8 @@ var countSmaller = function (nums) {
     let n = nums.length;
     let result = new Array(n).fill(0);
     let arr = nums.map((val, idx) => ({val, idx}));
-    countHelper(arr, 0, nums.length - 1, result);
+    console.log(arr);
+    countHelper(arr, 0, arr.length - 1, result);
     return result;
 };
 
@@ -11,10 +12,10 @@ var countHelper = function (arr, start, end, result) {
         return [arr[start]];
     }
 
-    let mid = Math.floor((start + end) / 2);
+    let mid = start + Math.floor((end - start) / 2);
     let left = countHelper(arr, start, mid, result);
-    let right = countHelper(arr, mid + 1, result);
-
+    let right = countHelper(arr, mid + 1, end, result);
+    
     return mergeSortCount(left, right, result);
 };
 
@@ -24,7 +25,7 @@ var mergeSortCount = function (left, right, result) {
     let sorted = [];
     while (i < m && j < n) {
         if(left[i].val <= right[j].val) {
-            result[left[i]] += count;
+            result[left[i].idx] += count;
             sorted[k++] = left[i++];
         } else {
             count++;
@@ -33,7 +34,7 @@ var mergeSortCount = function (left, right, result) {
     }
 
     while(i < m) {
-        result[left[i]] += count;
+        result[left[i].idx] += count;
         sorted[k++] = left[i++];
     }
 
@@ -44,3 +45,6 @@ var mergeSortCount = function (left, right, result) {
 
     return sorted;
 }
+
+let nums = [5,2,6,1];
+console.log(countSmaller(nums));
