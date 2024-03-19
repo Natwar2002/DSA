@@ -1,25 +1,19 @@
 var successfulPairs = function(spells, potions, success) {
-    let arr = [];
-    for (let i = 0; i < potions.length; i++) {
-        arr.push(Math.ceil(success/potions[i]));
-    }
-    
-    arr.sort((a,b) => a - b);
-    const n = arr.length;
+    potions.sort((a,b) => a - b);
+    const n = potions.length;
     
     const pairs = [];
     for (let spell in spells) {
-        let lo = 0, hi = n - 1, val = 0; 
+        let lo = 0, hi = n - 1; 
         while(lo <= hi) {
             let mid = Math.floor((lo + hi)/2);
-            if (arr[mid] <= spell) {
+            if (arr[mid] * spell < success) {
                 lo = mid + 1;
-                val = lo;
             } else {
                 hi = mid - 1;
             }
         }
-        pairs.push(val);
+        pairs.push(n - lo);
     }
 
     return pairs;
