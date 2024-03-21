@@ -8,7 +8,7 @@ var shipWithinDays = function(weights, days) {
     let lo = maxWeight, hi = totalWeight, ans = hi;
 
     while(lo <= hi) {
-        let mid = lo + Math.floor((hi - lo) / 2);
+        let mid = Math.floor((lo + hi)/2);
         if(canShipMidWeightInDays(weights, mid, days)) {
             ans = mid;
             hi = mid - 1;
@@ -27,7 +27,7 @@ function canShipMidWeightInDays(weights, mid, days) {
         tw += weights[i];
     }
     daysCount++;
-    return daysCount <= mid;
+    return daysCount <= days;
 }
 
 let weights = [1,2,3,4,5,6,7,8,9,10], days = 5;
