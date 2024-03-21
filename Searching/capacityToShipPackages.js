@@ -1,11 +1,11 @@
 var shipWithinDays = function(weights, days) {
-    let maxWeight = 0, totalWeight = 0;
+    let maxWeight = -1, totalWeight = 0;
     for (let i = 0; i < weights.length; i++) {
         totalWeight += weights[i];
         maxWeight = Math.max(maxWeight, weights[i]);
     }
 
-    let lo = maxWeight, hi = totalWeight, ans = lo;
+    let lo = maxWeight, hi = totalWeight, ans = hi;
 
     while(lo <= hi) {
         let mid = lo + Math.floor((hi - lo) / 2);
@@ -14,13 +14,13 @@ var shipWithinDays = function(weights, days) {
             hi = mid - 1;
         } else lo = mid + 1;
     }
-    return ans
+    return ans;
 }
 
 function canShipMidWeightInDays(weights, mid, days) {
     let daysCount = 0, tw = 0;
     for(let i = 0; i < weights.length; i++) {
-        if(weights[i] + tw > mid) {
+        if(tw + weights[i] > mid) {
             daysCount++;
             tw = 0;
         }
@@ -29,3 +29,6 @@ function canShipMidWeightInDays(weights, mid, days) {
     daysCount++;
     return daysCount <= mid;
 }
+
+let weights = [1,2,3,4,5,6,7,8,9,10], days = 5;
+console.log(shipWithinDays(weights, days));
