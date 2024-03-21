@@ -16,12 +16,12 @@ var minimizeMax = function(nums, p) {
 function canFormPpairsWithLessThanMid(nums, mid, p) {
     let count = 0, i = 0;
     while (i < nums.length - 1) {
-        if (nums[i + 1] - nums [i] <= mid) {
+        if (nums[i+1] - nums [i] <= mid) {
             count++;
             i += 2;
-        } else i ++;
+        } else i++;
     }
-    return count <= p;
+    return p <= count;
 }
 
 let nums = [10,1,2,7,1,3], p = 2;
