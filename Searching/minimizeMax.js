@@ -24,5 +24,5 @@ function canFormPpairsWithMinimumMaxDifference(nums, mid, p) {
     return p <= count;
 }
 
-let nums = [10,1,2,7,1,3], p = 2;
+let nums = [4,2,2,1], p = 1;  // [1,2,2,4]
 console.log(minimizeMax(nums, p));
