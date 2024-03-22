@@ -2,7 +2,7 @@ var minEatingSpeed = function (piles, h) {
     let lo = 1, hi = Math.max(...piles), ans = 1;
     while (lo <= hi) {
         let mid = lo + Math.floor((hi - lo) / 2);
-        if (canEatWithKspeed(piles, mid, h)) {
+        if (canEatWithMidBananaPerspeed(piles, mid, h)) {
             ans = mid;
             hi = mid - 1;
         } else lo = mid + 1;
@@ -10,7 +10,7 @@ var minEatingSpeed = function (piles, h) {
     return ans;
 };
 
-var canEatWithKspeed = function (piles, mid, h) {
+var canEatWithMidBananaPerspeed = function (piles, mid, h) {
     let speedPerHour = 0;
     for (let i = 0; i < piles.length; i++) {
         speedPerHour += Math.ceil(piles[i] / mid);
