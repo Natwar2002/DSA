@@ -1,0 +1,20 @@
+/* var f = function (n) {
+    if(n === 0 || n === 1) return n;
+    return f(n-1) + f(n-2);
+} */
+
+let dp;
+function f (n) {
+    if(n === 0 || n === 1) return n;
+
+    if (dp[n] != -1) return dp[n];
+    return dp[n] = f(n-1) + f(n-2);
+}
+
+var fib = function (n) {
+    dp = Array(n).fill(-1);
+    return f(n);
+}
+
+let n = 30;
+console.log(fib(n));
