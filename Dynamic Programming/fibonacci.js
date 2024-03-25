@@ -12,9 +12,9 @@ function f (n) {
 }
 
 var fib = function (n) {
-    dp = Array(n).fill(-1);
+    dp = Array(n+1).fill(-1);
     return f(n);
 }
 
-let n = 30;
+let n = 10;
 console.log(fib(n));
