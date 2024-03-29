@@ -8,7 +8,7 @@ var f = function (amount) {
 
     let ans = Number.MAX_SAFE_INTEGER;
     for(let i = 0; i < c.length; i++) {
-        if(amount >= coins) {
+        if(amount >= c[i]) {
             ans = Math.min(ans, f(amount - c[i]));
         }
     }
@@ -24,3 +24,5 @@ var coinChange = function (amount, coins) {
     return (ans === Number.MAX_SAFE_INTEGER) ? -1 : ans;
 }
 
+let coins = [1,2,5], amount = 11;
+console.log(coinChange(amount, coins));
