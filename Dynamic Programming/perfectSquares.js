@@ -30,5 +30,5 @@ var numSquares = function(n) {
     return f(n);
 };
 
-let n = 12;
+let n = 15;
 console.log(numSquares(n));
