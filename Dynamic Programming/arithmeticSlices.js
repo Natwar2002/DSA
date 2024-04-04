@@ -9,5 +9,7 @@ var f = function (i) {
 };
 
 var numberOfArithmeticSlices = function(nums) {
-        
+    arr = nums;
+    dp = Array(5005).fill(-1);
+     
 };
