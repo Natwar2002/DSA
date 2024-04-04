@@ -1,3 +1,13 @@
+let arr;
+let dp;
+
+var f = function (i) {
+    if (i == 0 || i == 1) return 0;
+    if(dp[i] != -1) return dp[i];
+    if(arr[i] - arr[i-1] != arr[i-1] - arr[i-2]) return dp[i] = 0;
+    else return dp[i] = 1 + f(i-1);
+};
+
 var numberOfArithmeticSlices = function(nums) {
-    
+        
 };
