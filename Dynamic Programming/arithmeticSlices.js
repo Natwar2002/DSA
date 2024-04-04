@@ -11,5 +11,8 @@ var f = function (i) {
 var numberOfArithmeticSlices = function(nums) {
     arr = nums;
     dp = Array(5005).fill(-1);
-    let ans = 0
+    let ans = 0;
+    for(let i = 0; i < nums.length; i++) {
+        ans += f(i);
+    }
 };
