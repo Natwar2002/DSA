@@ -1,0 +1,3 @@
+var numberOfArithmeticSlices = function(nums) {
+    
+};
