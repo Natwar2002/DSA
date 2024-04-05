@@ -18,3 +18,7 @@ var uniquePath = function (m, n) {
   } 
   return f(0,0); 
 };
+
+
+let m = 3, n = 7;
+console.log(uniquePath(m,n));
