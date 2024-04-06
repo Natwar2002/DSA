@@ -1,6 +1,23 @@
 let p, dp;
 var f= function (i, k, on) {
+    if(i == p.length) return 0;
+    if(dp[i][k][on] != -1) return dp[i][k][on];
 
+    let ans = Number.MIN_SAFE_INTEGER;
+    // Ignore :
+    ans = Math.max(ans, f(i+1, k, on));
+
+    // Buy :
+    if(k > 0 && on == 0) {
+        ans = Math.max(ans, -p[i] + f(i+1, k, 1));
+    }
+
+    // Sell :
+    if(on == 1) {
+        ans = Math.max(ans, p[i] + f(i+1, k-1, 0));
+    }
+
+    return dp[i][k][on] = ans;
 };
 
 var maxProfit = function (k, prices) {
