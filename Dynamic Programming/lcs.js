@@ -18,3 +18,5 @@ var longestCommonSubsequebce = function (text1, text2) {
     return f(text1, text2, text1.length - 1, text2.length - 1)
 }
 
+let text1 = "abccde", text2 = "acce" 
+console.log(longestCommonSubsequebce(text1, text2));
