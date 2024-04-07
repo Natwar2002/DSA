@@ -34,3 +34,7 @@ var maxProfit = function (k, prices) {
     let ans = f(0, k, 0);
     return ans;
 };
+
+
+let prices = [1,2,4], k = 2;
+console.log(maxProfit(k, prices));
