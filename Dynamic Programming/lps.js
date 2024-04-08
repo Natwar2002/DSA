@@ -1,3 +1,4 @@
+"use strict";
 let dp = new Array(1001);
 
 var f = function (s, i, j) {
