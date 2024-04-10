@@ -49,7 +49,7 @@ MyLinkedList.prototype.addAtTail = function(val) {
         while(current.next != null) {
             current = current.next;
         }
-    let node = new linkedList(val);
+    node = new linkedList(val);
     current.next = node;
     }
 };
