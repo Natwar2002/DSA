@@ -14,12 +14,12 @@ var MyLinkedList = function() {
  * @return {number}
  */
 MyLinkedList.prototype.get = function(index) {
-    if(index < 0 || index >= this.length()) return -1;
-    let current = this.head;
-    for(let i = 0; i < index; i++) {
-        current = current.next;
+    let i = 0;
+    let temp = this.head;
+    while(i < index && temp != null) {
+        temp = temp.next;
     }
-    return current.val;
+    return temp.val;
 };
 
 /** 
