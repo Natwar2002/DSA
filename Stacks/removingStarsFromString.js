@@ -14,23 +14,23 @@ class Stack {
         return this.#arr.pop();
     }
 
-    top(){
+    top() {
         return this.#arr[this.#arr.length - 1];
     }
 
-    isEmpty(){
-        return this.#arr.length == 0; 
+    isEmpty() {
+        return this.#arr.length == 0;
     }
 }
 
 var removeStars = function (str) {
     let s = new Stack();
     let i = 0;
-    while(i < str.length) {
-        if(str[i] == "*") {
-            if(!s.isEmpty()) {
+    while (i < str.length) {
+        if (str[i] == "*") {
+            if (!s.isEmpty()) {
                 s.pop();
-            } 
+            }
         } else {
             s.push(str[i]);
         }
@@ -38,7 +38,7 @@ var removeStars = function (str) {
     }
 
     let res = "";
-    while(!s.isEmpty()) {
+    while (!s.isEmpty()) {
         let ch = s.top();
         s.pop();
         res = ch + res;
