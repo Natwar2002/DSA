@@ -39,8 +39,8 @@ var removeStars = function (str) {
 
     let res = "";
     while (!s.isEmpty()) {
-        let ch = s.top();
-        s.pop();
+        // let ch = s.top();
+        let ch = s.pop();
         res = ch + res;
     }
     return res;
