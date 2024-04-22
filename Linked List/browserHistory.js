@@ -1,37 +1,38 @@
-/**
- * @param {string} homepage
- */
-class BrowserHistory {
-    constructor(homepage) {
-        this.homepage = homepage;
-    }
-    /**
-     * @param {string} url
-     * @return {void}
-     */
-    visit(url) {
-    }
-    /**
-     * @param {number} steps
-     * @return {string}
-     */
-    back(steps) {
-    }
-    /**
-     * @param {number} steps
-     * @return {string}
-     */
-    forward(steps) {
+class ListNode{
+    constructor(val, nextNode = null, prevNode = null){
+        this.val = val;
+        this.next = nextNode;
+        this.prev = prevNode
     }
 }
 
+class BrowserHistory{
+    constructor(homepage){
+        this.curr = new ListNode(homepage)
+    }
 
 
+    visit(url){
+        const newNode = new ListNode(url);
+        newNode.next = null;
+        this.curr.next = newNode;
+        newNode.prev = this.curr
+        this.curr = newNode;
+    }
 
-/** 
- * Your BrowserHistory object will be instantiated and called as such:
- * var obj = new BrowserHistory(homepage)
- * obj.visit(url)
- * var param_2 = obj.back(steps)
- * var param_3 = obj.forward(steps)
- */
+    back(steps){
+        for(let i = 0; i < steps; i++){
+            if(!this.curr.prev) return this.curr.val;
+            this.curr = this.curr.prev
+        }
+        return this.curr.val
+    }
+
+    forward(steps){
+        for(let i = 0; i < steps; i++){
+            if(!this.curr.next) return this.curr.val;
+            this.curr = this.curr.next
+        }
+        return this.curr.val
+    }
+}
