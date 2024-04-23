@@ -1,6 +1,6 @@
-var pairSum = function(head) {
+var pairSum = function (head) {
     let fast = head, slow = head;
-    while(fast != null && fast.next != null) {
+    while (fast != null && fast.next != null) {
         slow = slow.next;
         fast = fast.next.next;
     }
@@ -14,12 +14,12 @@ var pairSum = function(head) {
     }
 
     let ans = 0, cur = head;
-    while(fast != null) {
+    while (fast != null) {
         let sum = cur.val + fast.val;
         ans = Math.max(ans, sum);
         fast = fast.next;
         cur = cur.next;
     }
     return ans;
-    
+
 };
