@@ -25,10 +25,9 @@ var asteroidCollision = function (a) {
     }
 
     let res = [];
-    let j = 0;
     while(!st.isEmpty()) {
-        res[j] = st.pop();
-        i++;
+        res.push(st.top());
+        st.pop
     }
     return res;
 }
