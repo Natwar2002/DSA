@@ -40,5 +40,5 @@ var validParentheses = function (s) {
     return st.isEmpty();
 } 
 
-let s = '(){}{}[][[]]';
+let s = '([{({[]}]}))';
 console.log(validParentheses(s));
