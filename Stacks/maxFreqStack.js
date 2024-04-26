@@ -40,3 +40,21 @@ st.push(7);
 st.push(4);
 st.push(5);
 
+console.log(st.elementMap);
+console.log(st.freqMap);
+console.log(st.max);
+
+console.log(st.pop());
+console.log(st.pop());
+console.log(st.pop());
+
+console.log(st.elementMap);
+console.log(st.freqMap);
+console.log(st.max);
+
+console.log(st.pop());
+console.log(st.pop());
+
+console.log(st.elementMap);
+console.log(st.freqMap);
+console.log(st.max);
