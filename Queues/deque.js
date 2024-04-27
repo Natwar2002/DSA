@@ -45,7 +45,7 @@ MyLinkedList.prototype.deleteAtHead = function () {
     } else {
         let nextHead = this.head.next;
         this.head.next = null;
-        this.head.pre = null;
+        nextHead.pre = null;
         this.head = nextHead;
     }
 }
@@ -62,5 +62,4 @@ MyLinkedList.prototype.deleteAtTail = function () {
         this.tail.pre = null;
         this.tail = newTail;
     }
-
 }
