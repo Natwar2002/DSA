@@ -78,10 +78,10 @@ class Deque {
     addAtTail (val) {
         this.dll.addAtTail();
     }
-    removeAtHead () {
+    removeAtFront () {
         this.dll.deleteAtHead();
     }
-    removeAtTail () {
+    removeAtBack () {
         this.dll.deleteAtHead();
     }
     isEmpty () {
