@@ -93,4 +93,9 @@ dll.addAtTail(40);
 dll.addAtTail(50);
 dll.addAtHead(10);
 
-dll.display()
+dll.display();
+
+dll.removeAtHead();
+dll.removeAtTail();
+console.log();
+dll.display();
