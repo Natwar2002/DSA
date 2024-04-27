@@ -11,14 +11,11 @@ var MyLinkedList = function() {
     this.tail = null;
 };
 
-/** 
- * @param {number} val
- * @return {void}
- */
 MyLinkedList.prototype.addAtHead = function(val) {
     if(this.head == null) {
-        this.head = new node(val);
-        return;
+        let n = new node(val);
+        this.head = n;
+        this.tail = n;
     } else {
         let n = new node(val);
         this.head.pre = n;
@@ -27,10 +24,6 @@ MyLinkedList.prototype.addAtHead = function(val) {
     }
 };
 
-/** 
- * @param {number} val
- * @return {void}
- */
 MyLinkedList.prototype.addAtTail = function(val) {
     if(this.head == null) {
         this.addAtHead(val);
