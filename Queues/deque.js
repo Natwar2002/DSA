@@ -88,9 +88,13 @@ class Deque {
         return this.dll.isEmpty();
     }
     getFront () {
-        return this.dll.head;
+        if (this.dll.head) {
+            return this.dll.head.val;
+        }
     }
     getBack () {
-        return this.dll.tail;
+        if (this.dll.tail) {
+            return this.dll.tail.val;
+        }
     }
 }
