@@ -18,8 +18,8 @@ MyLinkedList.prototype.addAtHead = function(val) {
         this.tail = n;
     } else {
         let n = new node(val);
-        this.head.pre = n;
         n.next = this.head;
+        this.head.pre = n;
         this.head = n;
     }
 };
@@ -36,11 +36,17 @@ MyLinkedList.prototype.addAtTail = function(val) {
 };
 
 MyLinkedList.prototype.deleteAtHead = function () {
-    if(this.head == null) return;
-    let nextHead = this.head.next;
-    let nodeToBeDel = this.head;
-    this.head = nextHead;
-    nodeToBeDel.next = null;
+    if(this.head == null) {
+        return;
+    } else if (this.head.next == null) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        let nextHead = this.head.next;
+        this.head.next = null;
+        this.head.pre = null;
+        this.head = nextHead;
+    }
 }
 
 MyLinkedList.prototype.deleteAtTail = function () {
