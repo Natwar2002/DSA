@@ -31,6 +31,7 @@ MyLinkedList.prototype.addAtTail = function(val) {
     } else {
         let n = new node(val);
         this.tail.next = n;
+        n.pre = this.tail;
         this.tail = n;
     }
 };
@@ -50,5 +51,16 @@ MyLinkedList.prototype.deleteAtHead = function () {
 }
 
 MyLinkedList.prototype.deleteAtTail = function () {
-    let newTail = 
+    if(this.head == null) {
+        return;
+    } else if (this.head.next == null) {
+        this.head = null;
+        this.tail = null;
+    } else {
+        let newTail = this.tail.pre;
+        newTail.next = null;
+        this.tail.pre = null;
+        this.tail = newTail;
+    }
+
 }
