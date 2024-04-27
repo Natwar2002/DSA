@@ -48,7 +48,7 @@ MyLinkedList.prototype.deleteAtHead = function () {
         nextHead.pre = null;
         this.head = nextHead;
     }
-}
+};
 
 MyLinkedList.prototype.deleteAtTail = function () {
     if(this.head == null) {
@@ -61,5 +61,36 @@ MyLinkedList.prototype.deleteAtTail = function () {
         newTail.next = null;
         this.tail.pre = null;
         this.tail = newTail;
+    }
+};
+
+MyLinkedList.prototype.isEmpty = function () {
+    return this.head == null;
+};
+
+class Deque {
+    constructor () {
+        this.dll = new MyLinkedList();
+    }
+    addAtHead (val) {
+        this.dll.addAtHead();
+    }
+    addAtTail (val) {
+        this.dll.addAtTail();
+    }
+    removeAtHead () {
+        this.dll.deleteAtHead();
+    }
+    removeAtTail () {
+        this.dll.deleteAtHead();
+    }
+    isEmpty () {
+        return this.dll.isEmpty();
+    }
+    getFront () {
+        return this.dll.head;
+    }
+    getBack () {
+        return this.dll.tail;
     }
 }
