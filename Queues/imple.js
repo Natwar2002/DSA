@@ -23,4 +23,3 @@ MyLinkedList.prototype.addAtTail = function(val) {
         cur.next = n;
     }
 };
-
