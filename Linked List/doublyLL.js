@@ -5,13 +5,11 @@ class node {
         this.pre = null;
     }
 }
-
 class DoublyLinkedList{
     constructor (){
         this.head = null;
         this.tail = null;
     }
-
     addAtHead (val) {
         if(this.head == null) {
             let n = new node(val);
@@ -24,7 +22,6 @@ class DoublyLinkedList{
             this.head = n;
         }
     }
-
     addAtTail (val) {
         if (this.head == null) {
             this.addAtHead;
@@ -36,7 +33,6 @@ class DoublyLinkedList{
             this.tail = n;
         }
     }
-
     removeAtHead () {
         if(this.head == null) {
             return;
@@ -50,7 +46,6 @@ class DoublyLinkedList{
             this.head = newHead;
         }
     }
-
     removeAtTail () {
         if(this.head == null) {
             return;
@@ -64,11 +59,9 @@ class DoublyLinkedList{
             this.tail = newTail;
         }
     }
-
     isEmpty () {
         return this.head == null;
     }
-
     display () {
         let temp = this.head;
         while(temp != null) {
