@@ -15,6 +15,7 @@ var firstUniqueChar = function (s) {
         if(map[s[i]] == 1) {
             return i;
         }
+        j++;
     }
     return -1;
 }
