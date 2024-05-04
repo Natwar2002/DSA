@@ -9,5 +9,5 @@ var inorder = function (root) {
 
 var inorderTraversal = function(root) {
     res = [];
-    
+    inorder(root);
 }
