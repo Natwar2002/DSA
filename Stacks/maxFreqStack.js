@@ -16,7 +16,7 @@ class FreqStack {
             this.elementMap[frequency] = [val];
         } else {
             this.elementMap[frequency].push(val);
-        
+        }
     }
 
     pop () {
