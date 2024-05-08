@@ -44,7 +44,7 @@ MyQueue.prototype.pop = function() {
 
     const res = this.st2.pop();
 
-    while(!this.st2.empty()) {
+    while(!this.st2.isEmpty()) {
         let element = this.st2.pop();
         this.st1.push(element);
     }
@@ -56,7 +56,7 @@ MyQueue.prototype.peek = function() {
     return this.st1.top();
 }
 
-MyQueue.prototype.isEmpty = function() {
+MyQueue.prototype.empty = function() {
     return this.st1.isEmpty();
 }
 
