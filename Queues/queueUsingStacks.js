@@ -50,7 +50,13 @@ MyQueue.prototype.inefficientPush = function (val) {
     }
 }
 
-// Insertion inefficient
+// Deletion efficient 
+MyQueue.prototype.efficientPop = function() {
+    if(this.st1.isEmpty()) return -1;
+    return this.st1.pop();
+}
+
+// Deletion inefficient
 MyQueue.prototype.pop = function() {
     if(this.st1.isEmpty()) return -1;
 
