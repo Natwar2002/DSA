@@ -34,8 +34,20 @@ MyQueue.prototype.push = function(val) {
 }
 
 // Insertion inefficient 
-MyQueue.prototype.inefficientPush = function () {
-    
+MyQueue.prototype.inefficientPush = function (val) {
+    if(this.st1.isEmpty()) {
+        this.st1.push(val);
+    } else {
+        while(!this.st1.isEmpty()) {
+            let element = this.st1.pop();
+            this.st2.push(element);
+        }
+        this.st1.push(val);
+        while(!this.st2.isEmpty()) {
+            let element = this.st2.pop();
+            this.st1.push(element);
+        }
+    }
 }
 
 // Insertion inefficient
