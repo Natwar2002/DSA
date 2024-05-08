@@ -15,7 +15,7 @@ class Stack {
     }
 
     top(){
-        return this.#arr[this.#arr.length - 1];
+        return this.#arr[0];
     }
 
     isEmpty(){
