@@ -5,21 +5,67 @@ class node {
     }
 }
 
-var Queue = function() {
+var MyLinkedList = function() {
     this.head = null;
     this.tail = null;
 };
 
-MyLinkedList.prototype.addAtTail = function(val) {
+MyLinkedList.prototype.deleteAtHead = function () {
     if(this.head == null) {
-        this.addAtHead(val);
         return;
+    } else if(this.head.next == null) {
+        this.head = null;
+        this.tail = null;
     } else {
-        let cur = this.head;
-        while(cur.next != null) {
-            cur = cur.next;
-        }
-        let n = new node(val);
-        cur.next = n;
+        let nextHead = this.head.next;
+        this.head.next = null;
+        this.head = nextHead;
+    }
+}
+
+MyLinkedList.prototype.addAtTail = function(val) {
+    let n = new node(val);
+    if(this.head == null) {
+        this.head = n;
+        this.tail = n;
+    } else {
+        this.tail.next = n;
+        this.tail = n;
     }
 };
+
+MyLinkedList.prototype.getFront = function () {
+    return this.head.val;
+}
+
+MyLinkedList.prototype.isEmpty = function() {
+    return this.head == null && this.tail == null;
+}
+
+class Queue {
+    constructor() {
+        this.q = new MyLinkedList()
+    }
+    enqueue(val) {
+        return this.q.addAtTail(val);
+    }
+    dequeue() {
+        return this.q.deleteAtHead();
+    }
+    getFront() {
+        return this.q.getFront();
+    }
+    isEmpty() {
+        return this.q.isEmpty();
+    }
+}
+
+let q = new Queue();
+console.log(q.isEmpty());
+q.enqueue(10);
+q.enqueue(20);
+q.enqueue(30);
+console.log(q.getFront());
+q.dequeue();
+console.log(q.getFront());
+console.log(q.isEmpty());
