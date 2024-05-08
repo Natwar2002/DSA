@@ -33,6 +33,11 @@ MyQueue.prototype.push = function(val) {
     this.st1.push(val);
 }
 
+// Insertion inefficient 
+MyQueue.prototype.inefficientPush = function () {
+    
+}
+
 // Insertion inefficient
 MyQueue.prototype.pop = function() {
     if(this.st1.isEmpty()) return -1;
