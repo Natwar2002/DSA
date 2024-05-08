@@ -38,6 +38,10 @@ MyLinkedList.prototype.getFront = function () {
     return this.head.val;
 }
 
+MyLinkedList.prototype.getBack = function () {
+    return this.tail.val;
+}
+
 MyLinkedList.prototype.isEmpty = function() {
     return this.head == null && this.tail == null;
 }
@@ -54,6 +58,9 @@ class Queue {
     }
     front() {
         return this.q.getFront();
+    }
+    rear() {
+        return this.q.getBack();
     }
     isEmpty() {
         return this.q.isEmpty();
