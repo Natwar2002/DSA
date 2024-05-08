@@ -76,3 +76,4 @@ console.log(q.front());
 q.dequeue();
 console.log(q.front());
 console.log(q.isEmpty());
+console.log(q.rear());
