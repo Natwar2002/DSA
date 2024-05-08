@@ -52,7 +52,7 @@ class Queue {
     dequeue() {
         return this.q.deleteAtHead();
     }
-    getFront() {
+    front() {
         return this.q.getFront();
     }
     isEmpty() {
@@ -65,7 +65,7 @@ console.log(q.isEmpty());
 q.enqueue(10);
 q.enqueue(20);
 q.enqueue(30);
-console.log(q.getFront());
+console.log(q.front());
 q.dequeue();
-console.log(q.getFront());
+console.log(q.front());
 console.log(q.isEmpty());
