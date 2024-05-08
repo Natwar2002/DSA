@@ -42,7 +42,7 @@ MyQueue.prototype.pop = function() {
         this.st2.push(element);
     }
 
-    const res = this.st2.pop();
+    let res = this.st2.pop();
 
     while(!this.st2.isEmpty()) {
         let element = this.st2.pop();
