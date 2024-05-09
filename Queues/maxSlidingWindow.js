@@ -72,10 +72,10 @@ class Deque {
     constructor () {
         this.dll = new MyLinkedList();
     }
-    addAtHead (val) {
+    addAtFront (val) {
         this.dll.addAtHead(val);
     }
-    addAtTail (val) {
+    addAtBack (val) {
         this.dll.addAtTail(val);
     }
     removeAtFront () {
@@ -98,3 +98,38 @@ class Deque {
         }
     }
 }
+
+var maxSlidingWindow = function (nums, k) {
+    let d = new Deque();
+    let res = [];
+    for(let i = 0; i < k; i++) {
+        if(d.isEmpty()) {
+            d.addAtBack(i)
+        } else {
+            while(!d.isEmpty() && nums[i] > nums[d.getBack()]) {
+                d.removeAtBack();
+            }
+            d.addAtBack(i);
+        }
+    }
+    res.push(nums[d.getFront()]);
+
+    for(let i = k; i < nums.length; i++) {
+        while(!d.isEmpty() && d.getFront() <= i-k) {
+            d.removeAtFront();
+        }
+        if(d.isEmpty()) {
+            d.addAtBack(i);
+        } else {
+            while(!d.isEmpty() && nums[i] > nums[d.getBack()]) {
+                d.removeAtBack();
+            }
+            d.addAtBack(i);
+        }
+        res.push(nums[d.getFront()]);
+    }
+    return res;
+}
+
+let nums = [1,3,-1,-3,5,3,6,7], k = 3;
+console.log(maxSlidingWindow(nums, k));
