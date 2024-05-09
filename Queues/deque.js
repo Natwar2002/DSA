@@ -73,10 +73,10 @@ class Deque {
         this.dll = new MyLinkedList();
     }
     addAtHead (val) {
-        this.dll.addAtHead();
+        this.dll.addAtHead(val);
     }
     addAtTail (val) {
-        this.dll.addAtTail();
+        this.dll.addAtTail(val);
     }
     removeAtFront () {
         this.dll.deleteAtHead();
