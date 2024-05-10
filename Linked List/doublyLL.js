@@ -24,7 +24,7 @@ class DoublyLinkedList{
     }
     addAtTail (val) {
         if (this.head == null) {
-            this.addAtHead;
+            this.addAtHead(val);
             return;
         } else {
             let n = new node (val);

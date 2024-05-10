@@ -1,6 +1,6 @@
 class Node {
-    constructor(data) {
-        this.data = data;
+    constructor(val) {
+        this.val = val;
         this.next = null;
     }
 }
@@ -17,12 +17,12 @@ class LinkedList {
 
     getHead() {
         if(this.head == null) return undefined;
-        return this.head.data;
+        return this.head.val;
     }
 
     getTail() {
         if(this.tail == null) return undefined;
-        return this.tail.data;
+        return this.tail.val;
     }
 
     removeAtHead() {
