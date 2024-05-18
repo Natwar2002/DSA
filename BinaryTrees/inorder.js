@@ -2,9 +2,9 @@ let res;
 var inorder = function (root) {
     if(root == null) return null;
 
-    preorder(root.left);
+    inorder(root.left);
     res.push(root);
-    preorder(root.right);
+    inorder(root.right);
 };
 
 var inorderTraversal = function(root) {
