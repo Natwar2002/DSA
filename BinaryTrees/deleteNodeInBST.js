@@ -12,22 +12,15 @@ var f = function(root, key) {
         } else if (!root.right) {
             return f(root.left)
         } else {
-            if(!root.left && !root.right) {
-                return null;
-            } else if (!root.left) {
-                return root.right;
-            } else if (!root.right) {
-                return root.left;
-            } else {
-                let temp = root.right;
-                while(temp.left != null) {
-                    temp = temp.left;
-                }
-                root.val = temp.val;
-                root.right = f(root.right, temp.val);
+            let temp = root.right;
+            while(temp.left != null) {
+                temp = temp.left;
             }
+            root.val = temp.val;
+            root.right = f(root.right, temp.val);
         }
     }
+    return root;
 }
 
 var deleteNode = function(root, key) {
