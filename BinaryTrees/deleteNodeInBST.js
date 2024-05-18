@@ -8,9 +8,9 @@ var f = function(root, key) {
         if(!root.left && !root.right) {
             return null;
         } else if (!root.left) {
-            return f(root.right);
+            return root.right;
         } else if (!root.right) {
-            return f(root.left)
+            return root.left;
         } else {
             let temp = root.right;
             while(temp.left != null) {
@@ -21,7 +21,7 @@ var f = function(root, key) {
         }
     }
     return root;
-}
+};
 
 var deleteNode = function(root, key) {
     return f(root, key);
