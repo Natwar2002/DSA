@@ -1,5 +1,5 @@
 function f (root) {
-    if(!root) return;
+    if(!root) return null;
     f(root.left);
     f(root.right);
 
