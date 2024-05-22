@@ -52,7 +52,7 @@ class LinkedList {
     }
 }
 
-class Queue {
+class CustomQueue {
     constructor() {
         this.ll = new LinkedList(); // we will create a brand new empty list
     }
@@ -79,7 +79,7 @@ class Queue {
 
 function levelOrder (root) {
     if(!root) return [];
-    const q = new Queue();
+    const q = new CustomQueue();
     q.enqueue(root);
     q.enqueue(null);
     const res = [];

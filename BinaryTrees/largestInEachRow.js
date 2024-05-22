@@ -1,88 +1,79 @@
-class Node {
-    constructor(val) {
+class node {
+    constructor (val) {
         this.val = val;
         this.next = null;
     }
 }
 
-class LinkedList {
+class MyLinkedList {
     constructor() {
-        this.head = null; // head of the ll
-        this.tail = null; // tail of the ll
+        this.head = null;
+        this.tail = null;
     }
-
+    addAtTail(val) {
+        if(this.head == null) {
+            const n = new node(val);
+            this.head = n;
+            this.tail = n; 
+            return;
+        } else {
+            const n = new node(val);
+            this.tail.next = n;
+            this.tail = n;
+        }
+    }
+    removeAtHead() {
+        if(this.head == null) {
+            return;
+        } else if(this.head.next == null) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            const newHead = this.head.next;
+            this.head.next = null;
+            this.head = newHead;
+        }
+    }
     isEmpty() {
         return this.head == null;
     }
-
-    getHead() {
-        if(this.head == null) return undefined;
+    getFront() {
+        if(!this.head) return undefined;
         return this.head.val;
     }
-
-    getTail() {
-        if(this.tail == null) return undefined;
+    getRear() {
+        if(!this.tail) return undefined;
         return this.tail.val;
-    }
-
-    removeAtHead() {
-        if(this.head == null) return; // ll is empty
-        const newHead = this.head.next; // we will store the new head
-        this.head.next = null; // disconnect the old head from the ll
-        this.head = newHead; // allocating the brand new head
-
-        // if head beconmes null after removal of the node means ll is empty now
-        if(this.head == null) {
-            this.tail = null;
-        }
-    }
-
-    addAtTail(data) {
-        if(this.head == null) {
-            // ll is empty
-            const newNode = new Node(data);
-            this.head = newNode;
-            this.tail = newNode;
-            return;
-        } else {
-            const newNode = new Node(data);
-            this.tail.next = newNode; // we are attaching the new node after the prev tail
-            this.tail = newNode; // we updated the tail property
-        }
     }
 }
 
-class Queue {
+class CustomQueue {
     constructor() {
-        this.ll = new LinkedList(); // we will create a brand new empty list
+        this.ll = new MyLinkedList(); 
     }
-    enqueue(data) {
-        this.ll.addAtTail(data);
+    enqueue(val) {
+        this.ll.addAtTail(val);
     }
-
     dequeue() {
         this.ll.removeAtHead();
     }
-
-    isEmpty() { 
-        return this.ll.isEmpty();
-    }
-
     front() {
-        return this.ll.getHead();
+        return this.ll.getFront();
     }
-
-    back() {
-        return this.ll.getTail();
+    read() {
+        return this.ll.getRear();
+    }
+    isEmpty(){
+        return this.ll.isEmpty();
     }
 }
 
-function largestValues (root) {
+var largestValues = function(root) {
     if(!root) return [];
-    const q = new Queue();
+    const q = new CustomQueue();
     q.enqueue(root);
     q.enqueue(null);
-    const res = [];
+    let res = [];
     let level = new Array();
     while(!q.isEmpty()) {
         let cur = q.front();
@@ -90,20 +81,16 @@ function largestValues (root) {
         if(cur == null) {
             if(!q.isEmpty()) {
                 res.push(Math.max(...level));
-                q.enqueue(null);
                 level = new Array();
+                q.enqueue(null);
             } else {
                 res.push(Math.max(...level));
             }
         } else {
             level.push(cur.val);
-            if(cur.left != null) {
-                q.enqueue(cur.left);
-            }
-            if(cur.right != null) {
-                q.enqueue(cur.right);
-            } 
+            if(cur.left) q.enqueue(cur.left);
+            if(cur.right) q.enqueue(cur.right);
         }
     }
     return res;
-}
+};
