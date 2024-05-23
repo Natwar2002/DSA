@@ -6,6 +6,6 @@ function f (root1, root2) {
     return f(root1.left, root2.left) && f(root1.right, root2.right) || f(root1.left, root2.right) && f(root1.right, root2.left);
 }
 
-var flipEquivalent = function(root1, root2) {
+var flipEquiv = function(root1, root2) {
     return f(root1, root2);
 };
