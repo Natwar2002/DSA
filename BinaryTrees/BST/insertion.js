@@ -1,6 +1,6 @@
 function f(root, val) {
     if(root == null) {
-        return TreeNode(val)
+        return new TreeNode(val)
     }
 
     if(root.val > val) {
