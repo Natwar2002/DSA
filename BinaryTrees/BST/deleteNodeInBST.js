@@ -1,5 +1,6 @@
 var f = function(root, key) {
     if(!root) return null;
+    
     if(key < root.val) {
         root.left = f(root.left, key);
     } else if(key > root.val) {
