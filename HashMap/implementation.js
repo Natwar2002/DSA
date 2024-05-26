@@ -112,7 +112,25 @@ class HashMap {
     }
 
     remove(key) {
+        if(!this.search(key)) return null;
+        const bucketIndex = this.hashFunction(key);
+        let temp = this.arr[bucketIndex].head;
+        let pre = null;
 
+        while(temp != null) {
+            if(this.key === key) {
+                if(pre == null) {
+                    this.arr[bucketIndex].head = temp.next;
+                } else {
+                    pre.next = temp.next;
+                }
+                this.currSize -= 1;
+                return true;
+            }
+            pre = temp;
+            temp = temp.next;
+        }
+        return false;
     }
 
     search(key) {
@@ -176,4 +194,5 @@ hm.insert("grapes", 14);
 hm.display();
 hm.insert("xyz", 14);
 hm.display();
-console.log(hm.search("mango"));
+hm.remove("xyz");
+hm.display();
