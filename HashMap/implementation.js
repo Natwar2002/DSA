@@ -8,25 +8,23 @@ var Node = function (key, value) {
 }
 
 
-var MyLinkedList = function () {
-    this.head = null; // because initially everything is empty
-};
-
-/** 
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtHead = function (key, val) {
-    if (this.head == null) {
-        // means the ll is empty, so this node should become the head
-        this.head = new Node(key, val);
-    } else {
-        // when ll is not. empty
-        let n = new Node(key, val);
-        n.next = this.head;
-        this.head = n;
+class MyLinkedList {
+    constructor() {
+        this.head = null; // because initially everything is empty
     }
-};
+    addAtHead(key, val) {
+        if (this.head == null) {
+            // means the ll is empty, so this node should become the head
+            this.head = new Node(key, val);
+        } else {
+            // when ll is not. empty
+            let n = new Node(key, val);
+            n.next = this.head;
+            this.head = n;
+        }
+    }
+}
+
 
 class HashMap {
     constructor() {
