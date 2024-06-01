@@ -37,7 +37,7 @@ class HashMap {
      * @param {String} key 
      * @returns {Number} bucketIndex
      */ 
-    hashFunction(ke) {
+    hashFunction(key) {
         let p = 101;
         let pow = 1;
         let C = this.curSize;
