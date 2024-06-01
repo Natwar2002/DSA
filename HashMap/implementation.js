@@ -46,7 +46,6 @@ class HashMap {
         // the result of the hashfunction is the bucket index in the given array
 
         // Suggest any hashfunction for key as a string????
-
         // "mango": 3,
         // ((ascii(m)*p^0) +  (ascii(a)*p^1) + (ascii(n)*p^2) + (ascii(g)*p^3) .... )%array_size
         // "apple": 5
@@ -174,11 +173,9 @@ class HashMap {
                 let key = temp.key;
                 let value = temp.value;
 
-
                 const bucketIndex = this.hashFunction(key);
-
                 newArr[bucketIndex].addAtHead(key, value);
-
+                
                 temp = temp.next;
             }
         }
