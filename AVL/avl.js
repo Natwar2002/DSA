@@ -31,7 +31,7 @@ class AVL {
         return rightChild;
     }
 
-    rightRotation (root) {
+    rightRotate (root) {
         let leftChild = root.left;
         let T2 = leftChild.right;
     
@@ -52,5 +52,41 @@ class AVL {
     getBF (node) {
         if(!node) return 0;
         return this.height(node.left) - this.height(node.right);
+    }
+
+    insert (root, data) {
+        if(root == null) {
+            return new node(data);
+        }
+
+        if(data < root.data) {
+            root.left = this.insert(root.left, data);
+        } else if (data > root.data) {
+            root.right = this.insert(root.right, data);
+        } else {
+            // If data already exist..
+            return root;
+        }
+
+        root.height = Math.max(this.height(root.left), this.height(root.right)) + 1;
+
+        // get balance factor;
+        let balanceFactor = this.getBF(root);
+
+        // left heavy
+        if(balanceFactor > 1 && data < root.left.data) {
+            return this.rightRotate(root);
+        }
+
+        // right heavy
+        if(balanceFactor < -1 && data > root.right.data) {
+            return this.leftRotate(root);
+        }
+
+        // 
+        if(balanceFactor > 1 && data > root.left.data) {
+            root.left = this.leftRotate(root.left);
+            return this.rightRotate(root);
+        }
     }
 }
