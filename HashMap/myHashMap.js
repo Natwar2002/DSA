@@ -43,7 +43,7 @@ class HashMap {
         let C = this.curSize;
         let ans = 0;
         for(let i = 0; i < key.length; i++) {
-            let asciiValue = ascii(key, i);
+            let asciiValue = ascii(key[i], i);
             ans = ((ans % C) + ((asciiValue % C) * (pow % C)) % C) % C;
             pow = (pow % C) * (p % C);  
         }

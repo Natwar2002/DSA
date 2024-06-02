@@ -59,8 +59,7 @@ class HashMap {
         for (let i = 0; i < key.length; i++) {
             // go to each character of given
             let asciiValue = this.ascii(key, i);
-            // ans = ((ans%this.currSize) + ((asciiValue%this.currSize)*(pow%this.currSize))%this.currSize) % this.currSize;
-
+            
             ans = ((ans % C) + ((asciiValue % C) * (pow % C)) % C) % C;
             // for next iteration we will incremement the power
             pow = ((pow % C) * p % C) % C;
