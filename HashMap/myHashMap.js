@@ -10,11 +10,11 @@ class MyLinkedList {
     constructor() {
         this.head = null;
     }
-    addAtHead(key, val) {
-        let n = new Node(key, val);
+    addAtHead(key, val) { 
         if(this.head == null) {
-            this.head = n;
+            this.head = new Node(key, val);;
         } else {
+            let n = new Node(key, val);
             n.next = this.head;
             this.head = n;
         }
@@ -29,7 +29,7 @@ class HashMap {
         this.arr = Array(this.maxSize);
 
         for(let i = 0; i < this.maxSize; i++) {
-            arr[i] = new MyLinkedList();
+            this.arr[i] = new MyLinkedList();
         }
     }
 
@@ -40,17 +40,16 @@ class HashMap {
     hashFunction(key) {
         let p = 101;
         let pow = 1;
-        let C = this.curSize;
+        let M = this.maxSize;
         let ans = 0;
         for(let i = 0; i < key.length; i++) {
-            let asciiValue = ascii(key[i], i);
-            ans = ((ans % C) + ((asciiValue % C) * (pow % C)) % C) % C;
-            pow = (pow % C) * (p % C);  
+            let asciiValue = this.ascii(key, i);
+            ans = ((ans % M) + ((asciiValue % M) * (pow % M)) % M) % M;
+            pow = ((pow % M) * (p % M)) % M;  
         }
         return ans; // BucketIndex;
     }
     /**
-     * 
      * @param {String} key 
      * @param {Number} i 
      * @returns {Number}
@@ -76,8 +75,50 @@ class HashMap {
 
     rehash() {
         this.maxSize *= 2;
+        let newArr = Array(this.maxSize);
+        for(let i = 0; i < this.maxSize; i++) {
+            newArr[i] = new MyLinkedList();
+        }
+
+        const oldArray = this.arr;
+        for(let i = 0; i < oldArray.length; i++) {
+            let temp = oldArray[i].head;
+            while(temp != null) {
+                let key = temp.key;
+                let val = temp.val;
+
+                const bucketIndex = this.hashFunction(key);
+                newArr[bucketIndex].addAtHead(key, val);
+                temp = temp.next;
+            }
+        }
+        this.arr = newArr;
     }
 
     search(key) {}
     delete(key) {}
+
+    display() {
+        for(let i = 0; i < this.arr.length; i++) {
+            let temp = this.arr[i].head;
+            let str = 'LL : ';
+            while(temp != null) {
+                str += `( ${temp.key}, ${temp.val} ) ->`;
+                temp = temp.next;
+            }
+            console.log(str);
+        }
+        console.log(this.curSize, this.maxSize);
+        console.log("*********");
+    }
 }
+
+const hm = new HashMap();
+hm.insert("mango", 10);
+hm.display();
+hm.insert("banana", 3);
+hm.display();
+hm.insert("apple", 4);
+hm.display();
+hm.insert("grapes", 14);
+hm.display();
