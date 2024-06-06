@@ -19,6 +19,13 @@ class MyLinkedList {
             this.head = n;
         }
     }
+    deleteAtHead() {
+        if(this.head == null) return;
+        let nextHead = this.head.next;
+        let nodeToBeDelete = this.head; // curr head
+        this.head = nextHead;
+        nodeToBeDelete.next = null; // prev head disconnected
+    }
 }
 
 class HashMap {
@@ -26,6 +33,7 @@ class HashMap {
         this.maxSize = 2;
         this.curSize = 0;
         this.lambdaFactorThreshold = 0.5;
+        this.lambdaFactorThresholdLower = 0.25;
         this.arr = Array(this.maxSize);
 
         for(let i = 0; i < this.maxSize; i++) {
@@ -61,8 +69,8 @@ class HashMap {
         this.curSize += 1;
     }
 
-    rehash() {
-        this.maxSize *= 2;
+    rehash(factor = 2) {
+        this.maxSize *= factor;
         let newArr = Array(this.maxSize);
         for(let i = 0; i < this.maxSize; i++) {
             newArr[i] = new MyLinkedList();
@@ -91,7 +99,7 @@ class HashMap {
         if(temp.key === key) {
             return temp.val;
         }
-        
+        temp = temp.next;
         while(temp != null) {
             if(temp.key === key) {
                 return temp.val;
@@ -101,7 +109,35 @@ class HashMap {
         return null;
     }
 
-    delete(key) {}
+    remove(key) {
+        if(!this.search(key)) return;
+        
+        const bucketIndex = this.hashFunction(key);
+        let temp = this.arr[bucketIndex].head;
+
+        if(temp.key === key) {
+            // remove node;
+            this.arr[bucketIndex].deleteAtHead();
+            this.curSize--;
+            const loadFactor = this.curSize/this.maxSize;
+            if(loadFactor <= this.lambdaFactorThresholdLower) this.rehash(0.5);
+            return;
+        }
+        // temp = temp.next;
+
+        while(temp != null) {
+            if(temp.next != null && temp.next.key === key) {
+                let nodeToBeDel = temp.next;
+                temp.next = nodeToBeDel.next;
+                nodeToBeDel.next = null;
+                this.curSize--;
+                const loadFactor = this.curSize/this.maxSize;
+                if(loadFactor <= this.lambdaFactorThresholdLower) this.rehash(0.5);
+                return;
+            }
+            temp = temp.next;
+        }
+    }
 
     display() {
         for(let i = 0; i < this.arr.length; i++) {
@@ -126,4 +162,5 @@ hm.display();
 hm.insert("apple", 4);
 hm.display();
 hm.insert("grapes", 14);
+hm.remove("mango");
 hm.display();
