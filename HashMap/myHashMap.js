@@ -32,11 +32,7 @@ class HashMap {
             this.arr[i] = new MyLinkedList();
         }
     }
-
-    /**
-     * @param {String} key 
-     * @returns {Number} bucketIndex
-     */ 
+ 
     hashFunction(key) {
         let p = 101;
         let pow = 1;
@@ -49,19 +45,11 @@ class HashMap {
         }
         return ans; // BucketIndex;
     }
-    /**
-     * @param {String} key 
-     * @param {Number} i 
-     * @returns {Number}
-     */
+    
     ascii (key, i) {
         return key.charCodeAt(i);
     }
 
-    /**
-     * @param {String} key 
-     * @param {Number} val
-     */
     insert (key, val) {
         let newLambdaFactor = (this.curSize + 1)/this.maxSize;
         if(newLambdaFactor >= this.lambdaFactorThreshold) {
@@ -81,6 +69,7 @@ class HashMap {
         }
 
         const oldArray = this.arr;
+        this.curSize = 0;
         for(let i = 0; i < oldArray.length; i++) {
             let temp = oldArray[i].head;
             while(temp != null) {
@@ -90,12 +79,28 @@ class HashMap {
                 const bucketIndex = this.hashFunction(key);
                 newArr[bucketIndex].addAtHead(key, val);
                 temp = temp.next;
+                this.curSize += 1;
             }
         }
         this.arr = newArr;
     }
 
-    search(key) {}
+    search(key) {
+        let bucketIndex = this.hashFunction(key);
+        let temp = this.arr[bucketIndex].head;
+        if(temp.key === key) {
+            return temp.val;
+        }
+        
+        while(temp != null) {
+            if(temp.key === key) {
+                return temp.val;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+
     delete(key) {}
 
     display() {
