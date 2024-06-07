@@ -48,6 +48,7 @@ class HashMap {
         let ans = 0;
         for(let i = 0; i < key.length; i++) {
             let asciiValue = this.ascii(key, i);
+            // ans = ans + asciiValue * pow;
             ans = ((ans % M) + ((asciiValue % M) * (pow % M)) % M) % M;
             pow = ((pow % M) * (p % M)) % M;  
         }
@@ -59,6 +60,11 @@ class HashMap {
     }
 
     insert (key, val) {
+        if(this.search(key)) {
+            this.update(key, val);
+            return;
+        }
+
         let newLambdaFactor = (this.curSize + 1)/this.maxSize;
         if(newLambdaFactor >= this.lambdaFactorThreshold) {
             this.rehash();
@@ -67,6 +73,22 @@ class HashMap {
         const bucketIndex = this.hashFunction(key);
         this.arr[bucketIndex].addAtHead(key, val);
         this.curSize += 1;
+    }
+
+    update(key, val) {
+        const bucketIndex = this.hashFunction(key);
+        let temp = this.arr[bucketIndex].head;
+        if(temp.key == key) {
+            temp.val = val;
+            return;
+        }
+        while(temp != null) {
+            if(temp.key === key) {
+                temp.val = val;
+                return;
+            }
+            temp = temp.next;
+        }
     }
 
     rehash(factor = 2) {
@@ -96,10 +118,9 @@ class HashMap {
     search(key) {
         let bucketIndex = this.hashFunction(key);
         let temp = this.arr[bucketIndex].head;
-        if(temp.key === key) {
+        if(temp != null && temp.key === key) {
             return temp.val;
         }
-        temp = temp.next;
         while(temp != null) {
             if(temp.key === key) {
                 return temp.val;
@@ -120,7 +141,7 @@ class HashMap {
             this.arr[bucketIndex].deleteAtHead();
             this.curSize--;
             const loadFactor = this.curSize/this.maxSize;
-            if(loadFactor <= this.lambdaFactorThresholdLower) this.rehash(0.5);
+            if(loadFactor < this.lambdaFactorThresholdLower) this.rehash(0.5);
             return;
         }
         // temp = temp.next;
@@ -162,5 +183,12 @@ hm.display();
 hm.insert("apple", 4);
 hm.display();
 hm.insert("grapes", 14);
+hm.display();
+hm.insert("berries", 10);
+hm.display();
 hm.remove("mango");
+hm.display();
+hm.remove("berries");
+hm.display();
+hm.insert("grapes", 10);
 hm.display();
