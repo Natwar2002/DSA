@@ -19,7 +19,7 @@ class Trie {
                 cur = cur.children[c];
             } else {
                 cur.children[c] = new node(c);
-                temp = cur.children[c];
+                cur = cur.children[c];
             }
         }
         cur.isTerminal = true;
@@ -42,7 +42,12 @@ class Trie {
         let cur = this.root;
         for(let i = 0; i < prefix.length; i++) {
             const c = prefix[i];
-            if(cur)
+            if(cur.children[c]) {
+                cur = cur.children[c];
+            } else {
+                return false;
+            }
         }
+        return true;
     }
 }
