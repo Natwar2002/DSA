@@ -8,10 +8,18 @@ class node {
 
 class Trie {
     constructor() {
-        this.root = null;
+        this.root = new node(null);
     }
 
-    insert() {
+    insert(word) {
 
+    }
+
+    search(word) {
+
+    }
+
+    startsWith(prefix) {
+        
     }
 }
