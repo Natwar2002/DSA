@@ -5,3 +5,13 @@ class node {
         this.children = {};
     }
 }
+
+class Trie {
+    constructor() {
+        this.root = null;
+    }
+
+    insert() {
+
+    }
+}
