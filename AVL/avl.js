@@ -35,8 +35,8 @@ class AVL {
         let leftChild = root.left;
         let T2 = leftChild.right;
     
-        leftChild.right = node;
-        node.left = T2;
+        leftChild.right = root;
+        root.left = T2;
     
         root.height = Math.max(this.height(root.left), this.height(root.right)) + 1;
         leftChild.height = Math.max(this.height(leftChild.left), this.height(leftChild.right)) + 1;
@@ -54,15 +54,19 @@ class AVL {
         return this.height(node.left) - this.height(node.right);
     }
 
-    insert (root, data) {
-        if(root == null) {
+    insert (data) {
+        this.root = this.insertInAvl(this.root, data);
+    }
+
+    insertInAvl (root, data) {
+        if(!root) {
             return new node(data);
         }
 
         if(data < root.data) {
-            root.left = this.insert(root.left, data);
+            root.left = this.insertInAvl(root.left, data);
         } else if (data > root.data) {
-            root.right = this.insert(root.right, data);
+            root.right = this.insertInAvl(root.right, data);
         } else {
             // If data already exist..
             return root;
@@ -73,20 +77,118 @@ class AVL {
         // get balance factor;
         let balanceFactor = this.getBF(root);
 
-        // left heavy
-        if(balanceFactor > 1 && data < root.left.data) {
-            return this.rightRotate(root);
+        if(balanceFactor > 1) {
+            // left heavy
+            let beta = root.left;
+            if(data < beta.data) {
+                // right rotation
+                return this.rightRotate(root);
+            } else {
+                // left-right rotation
+                root.left = this.leftRotate(root.left);
+                return this.rightRotate(root);
+            }
+        } else if (balanceFactor < -1) {
+            // right heavy
+            let beta = root.right;
+            if(data > beta.data) {
+                // left rotation
+                return this.leftRotate(root);
+            } else {
+                // right-left rotation
+                root.right = this.rightRotate(root.right);
+                return this.leftRotate(root);
+            }
         }
-
-        // right heavy
-        if(balanceFactor < -1 && data > root.right.data) {
-            return this.leftRotate(root);
-        }
-
-        // 
-        if(balanceFactor > 1 && data > root.left.data) {
-            root.left = this.leftRotate(root.left);
-            return this.rightRotate(root);
-        }
+        return root;
     }
+    
+    delete(data) {
+        this.root = this.remove(this.root, data);
+    }
+
+    remove(root, data) {
+        if(!root) return null;
+        if(data < root.data) {
+            root.left = this.remove(root.left, data);
+        } else if(data > root.data) {
+            root.right = this.remove(root.right, data);
+        } else {
+            if(!root.left && !root.right) {
+                return null;
+            } else if (!root.left) {
+                return root.right;
+            } else if (!root.right) {
+                return root.left;
+            } else {
+                let temp = root.right;
+                while(temp.left != null) {
+                    temp = temp.left;
+                }
+                root.data = temp.data;
+                root.right = this.remove(root.right, temp.data);
+            }
+        }
+
+        root.height = Math.max(this.height(root.left), this.height(root.right)) + 1;
+        // get balance factor;
+        let balanceFactor = this.getBF(root);
+
+        if(balanceFactor > 1) {
+            // left heavy
+            let beta = root.left;
+            if(data < beta.data) {
+                // right rotation
+                return this.rightRotate(root);
+            } else {
+                // left-right rotation
+                root.left = this.leftRotate(root.left);
+                return this.rightRotate(root);
+            }
+        } else if (balanceFactor < -1) {
+            // right heavy
+            let beta = root.right;
+            if(data > beta.data) {
+                // left rotation
+                return this.leftRotate(root);
+            } else {
+                // right-left rotation
+                root.right = this.rightRotate(root.right);
+                return this.leftRotate(root);
+            }
+        } 
+        return root;
+    }
+
+    preorder (root, res) {
+        if(root == null) return null;
+
+        res.push(root.data);
+        this.preorder(root.left, res);
+        this.preorder(root.right, res);
+    }
+
+    preorderTraversal () {
+        let res = [];
+        this.preorder(this.root, res);
+        return res;
+    }  
 }
+
+let c = new AVL();
+c.insert(10);
+c.insert(20);
+c.insert(30);
+c.insert(40);
+c.insert(50);
+c.insert(60);
+c.insert(70);
+c.insert(80);
+c.insert(90);
+c.insert(100);
+let pre = c.preorderTraversal();
+console.log(pre);
+
+c.remove(100);
+pre = c.preorderTraversal();
+console.log(pre);
