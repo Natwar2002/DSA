@@ -25,7 +25,7 @@ class AVL {
     
         // Update heights of the node and the new root
         root.height = Math.max(this.height(root.left), this.height(root.right)) + 1;
-        rightChild.height = max(this.height(rightChild.left), this.height(rightChild.right)) + 1;
+        rightChild.height = Math.max(this.height(rightChild.left), this.height(rightChild.right)) + 1;
     
         // Return the new root
         return rightChild;
