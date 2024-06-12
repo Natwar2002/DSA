@@ -31,7 +31,7 @@ class AVL {
         return rightChild;
     }
 
-    rightRotate (root) {
+    rightRotate (root) {  // root is unbalanced
         let leftChild = root.left;
         let T2 = leftChild.right;
     
