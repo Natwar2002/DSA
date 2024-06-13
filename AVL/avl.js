@@ -107,12 +107,12 @@ class AVL {
         this.root = this.remove(this.root, data);
     }
 
-    remove(root, data) {
+    remove(root, key) {
         if(!root) return null;
-        if(data < root.data) {
-            root.left = this.remove(root.left, data);
-        } else if(data > root.data) {
-            root.right = this.remove(root.right, data);
+        if(key < root.val) {
+            root.left = this.remove(root.left, key);
+        } else if(key > root.val) {
+            root.right = this.remove(root.right, key);
         } else {
             if(!root.left && !root.right) {
                 return null;
@@ -125,8 +125,8 @@ class AVL {
                 while(temp.left != null) {
                     temp = temp.left;
                 }
-                root.data = temp.data;
-                root.right = this.remove(root.right, temp.data);
+                root.val = temp.val;
+                root.right = this.remove(root.right, temp.val);
             }
         }
 
@@ -137,7 +137,7 @@ class AVL {
         if(balanceFactor > 1) {
             // left heavy
             let beta = root.left;
-            if(data < beta.data) {
+            if(key < beta.data) {
                 // right rotation
                 return this.rightRotate(root);
             } else {
@@ -148,7 +148,7 @@ class AVL {
         } else if (balanceFactor < -1) {
             // right heavy
             let beta = root.right;
-            if(data > beta.data) {
+            if(key > beta.data) {
                 // left rotation
                 return this.leftRotate(root);
             } else {
@@ -189,6 +189,6 @@ c.insert(100);
 let pre = c.preorderTraversal();
 console.log(pre);
 
-c.remove(100);
+c.delete(20);
 pre = c.preorderTraversal();
 console.log(pre);
