@@ -56,3 +56,7 @@ hp.insert(50);
 hp.insert(6);
 hp.insert(4);
 hp.display();
+hp.remove();
+hp.display();
+hp.remove();
+hp.display();
