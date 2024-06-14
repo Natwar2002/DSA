@@ -28,8 +28,10 @@ class maxHeap {
             if(lc < this.arr.length - 1 && this.arr[lc] > this.arr[max]) max = lc;
             if(rc < this.arr.length - 1 && this.arr[rc] > this.arr[max]) max = rc;
             if(i != max) {
-                [this.arr[]]
-            }
+                [this.arr[max], this.arr[i]] = [this.arr[i], this.arr[max]];
+            } else break;
+
+            i = max;
         }
     }
 
