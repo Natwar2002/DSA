@@ -44,8 +44,23 @@ class maxHeap {
     display() {
         console.log(this.arr);
     }
+
+    root() {
+        return this.arr[0];
+    }
 }
 
 var findKthLargest = function(nums, k) {
-    
+    const hp = new maxHeap();
+    for(let i = 0; i < nums.length; i++) {
+        hp.insert(nums[i]);
+    }
+    for(let i = 0; i < k - 1; i++) {
+        hp.remove();
+    }
+    return hp.root();
 };
+
+let nums = [10, 20, 45, 60, 77, 2, -5, 30, 70];
+let k = 3;
+console.log(findKthLargest(nums, k));
