@@ -43,7 +43,7 @@ class Heap {
     }
 
     root() {
-        return this.arr[0]
+        return this.arr[0];
     }
 }
 
