@@ -37,9 +37,11 @@ class Heap {
     }
 
     remove () {
+        if(this.arr.length == 0) return;
         [this.arr[0], this.arr[this.arr.length - 1]] = [this.arr[this.arr.length - 1], this.arr[0]];
-        this.arr.pop();
+        let root = this.arr.pop();
         this.downHeapify(0);
+        return root;
     }
 
     root() {
@@ -54,8 +56,7 @@ function heapSort (arr) {
         hp.insert(arr[i]);
     }
     for(let i = 0; i < n; i++) {
-        arr[i] = hp.root();
-        hp.remove();
+        arr[i] = hp.remove();
     }    
 }
 
