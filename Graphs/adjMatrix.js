@@ -1,21 +1,21 @@
 class Graph {
     constructor(noOfVertices) {
         this.v = noOfVertices;
-        this.adjList = new Array(this.v);
+        this.adjMat = new Array(this.v);
         for(let i = 0; i < this.v; i++) {
-            this.adjList[i] = [];
+            this.adjMat[i] = new Array(this.v).fill(0);
         }
     }
 
     addEdge(v1, v2, biDir = true) {
-        this.adjList[v1].push(v2);
-        if(biDir){
-            this.adjList[v2].push(v1);
+        this.adjMat[v1][v2] = 1;
+        if(biDir) {
+            this.adjMat[v2][v1] = 1;
         }
     }
 
     display() {
-        console.log(this.adjList);
+        console.log(this.adjMat);
     }
 }
 
