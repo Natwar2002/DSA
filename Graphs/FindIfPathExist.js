@@ -1,4 +1,14 @@
-
+function dfs (src, dest, g, visited) {
+    if(src === dest) return true;
+    let ans = false;
+    visited.add(src);
+    for(let n of g[src]) {
+        if(!visited.has(n)) {
+            ans = ans || dfs(n, dest, g, visited);
+        }
+    }
+    return ans;
+}
 
 var validPath = function (n, edges, source, destination) {
     let g = new Array(n);
