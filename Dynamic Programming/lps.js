@@ -11,7 +11,7 @@ var f = function (s, i, j) {
         return dp[i][j] = Math.max(f(s, i+1, j), f(s, i, j-1));
     }
 }
-var longestPalindromicSubsequebce = function (s) {
+var longestPalindromicSubsequence = function (s) {
     for(let i = 0; i < 1001; i++) {
         dp[i] = new Array(1001).fill(-1);
     }
@@ -19,4 +19,4 @@ var longestPalindromicSubsequebce = function (s) {
 }
 
 let s = "abbabbabb";
-console.log(longestPalindromicSubsequebce(s));
+console.log(longestPalindromicSubsequence(s));

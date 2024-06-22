@@ -18,7 +18,7 @@ var f = function (i,j) {
 };
 
 var minPathSum = function(grid) {
-    mat = [...grid];
+    mat = grid;
     m = grid.length - 1;
     n = grid[0].length - 1;
     dp = Array(205);
