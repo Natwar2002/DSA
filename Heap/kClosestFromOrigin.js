@@ -49,6 +49,10 @@ class Heap {
     display() {
         console.log(this.arr);
     }
+
+    get() {
+        return this.arr[0];
+    }
 }
 
 class Point {
@@ -61,6 +65,21 @@ class Point {
 
 var kClosest = function(points, k) {
     let hp = new Heap((pointA, pointB) => {
-        return pointA.dist >
-    })
+        return pointA.dist > pointB.dist;
+    });
+
+    for(let i = 0; i < points.length; i++) {
+        let p = new Point(points[i][0], points[i][1]);
+        hp.insert(p);
+    }
+
+    let res = [];
+    while(k > 0) {
+        let val = [hp.get().x, hp.get().y];
+        res.push(val);
+        hp.remove();
+        k--;
+    }
+    
+    return res;
 };
