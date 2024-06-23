@@ -42,6 +42,10 @@ class Heap {
         this.downHeapify(0);
     }
 
+    isEmpty() {
+        return this.arr.length == 0;
+    }
+    
     display() {
         console.log(this.arr);
     }
