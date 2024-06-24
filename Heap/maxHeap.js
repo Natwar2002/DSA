@@ -7,11 +7,11 @@ class maxHeap {
         while(i > 0) {
             let pi = Math.floor(i - 1 / 2);
             if(this.arr[pi] < this.arr[i]) {
-                [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]]
+                [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]];
+                i = pi;
             } else {
                 break;
             }
-            i = pi;
         }
     }
 
@@ -29,9 +29,8 @@ class maxHeap {
             if(rc < this.arr.length - 1 && this.arr[rc] > this.arr[max]) max = rc;
             if(i != max) {
                 [this.arr[max], this.arr[i]] = [this.arr[i], this.arr[max]];
+                i = max;
             } else break;
-
-            i = max;
         }
     }
 
