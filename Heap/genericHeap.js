@@ -49,7 +49,7 @@ class Heap {
         console.log(this.arr);
     }
 
-    root() {
+    get() {
         return this.arr[0];
     }
 }
