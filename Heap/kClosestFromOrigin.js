@@ -6,7 +6,7 @@ class Heap {
 
     upHeapify(i) {
         while(i > 0) {
-            let pi = Math.floor(i - 1 / 2);
+            let pi = Math.floor((i - 1) / 2);
             if(this.cmp(this.arr[pi], this.arr[i])) {
                 [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]];
                 i = pi;
