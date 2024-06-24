@@ -54,17 +54,30 @@ class Heap {
     }
 }
 
-let hp = new Heap((a, b) => a > b);
-hp.insert(10);
-hp.insert(40);
-hp.insert(3);
-hp.insert(20);
-hp.insert(100);
-hp.insert(50);
-hp.insert(6);
-hp.insert(4);
-hp.display();
-hp.remove();
-hp.display();
-hp.remove();
-hp.display();
+var mergeKLists = function (lists) {
+    let result = new ListNode(123);
+    let temp = result;
+
+    let hp = new Heap((a, b) => a.val > b.val);
+    
+    for(let i = 0; i < lists.length; i++) {
+        if(lists[i] !== null) {
+            hp.insert(lists[i]);
+        }
+    }
+
+    while(!hp.isEmpty()) {
+        let root = hp.get();
+
+        temp.next = root;
+        temp = temp.next;
+
+        hp.remove();
+
+        let nextNode = root.next;
+        root.next = null;
+
+        if(nextNode != null) hp.insert(nextNode);
+    }
+    return result.next;
+}

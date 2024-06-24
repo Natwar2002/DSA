@@ -5,7 +5,7 @@ class maxHeap {
 
     upHeapify(i) {
         while(i > 0) {
-            let pi = Math.floor(i - 1 / 2);
+            let pi = Math.floor((i - 1) / 2);
             if(this.arr[pi] < this.arr[i]) {
                 [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]]
             } else {
@@ -21,12 +21,12 @@ class maxHeap {
     }
 
     downHeapify (i) {
-        while(i < this.arr.length - 1) {
+        while(i < this.arr.length) {
             let lc = i*2 + 1;
             let rc = i*2 + 2;
             let max = i;
-            if(lc < this.arr.length - 1 && this.arr[lc] > this.arr[max]) max = lc;
-            if(rc < this.arr.length - 1 && this.arr[rc] > this.arr[max]) max = rc;
+            if(lc < this.arr.length && this.arr[lc] > this.arr[max]) max = lc;
+            if(rc < this.arr.length && this.arr[rc] > this.arr[max]) max = rc;
             if(i != max) {
                 [this.arr[max], this.arr[i]] = [this.arr[i], this.arr[max]];
             } else break;
