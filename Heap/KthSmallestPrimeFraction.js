@@ -19,4 +19,10 @@ class Heap {
             } else break;
         }
     }
+
+    remove() {
+        [this.arr[0], this.arr[this.arr.length - 1]] = [this.arr[this.arr.length - 1], this.arr[0]];
+        this.arr.pop();
+        this.downHeapify(0);
+    }
 }
