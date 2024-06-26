@@ -25,4 +25,12 @@ class Heap {
         this.arr.pop();
         this.downHeapify(0);
     }
+
+    downHeapify(i) {
+        while(i < this.arr.length) {
+            let lc = (i*2) + 1;
+            let rc = (i*2) + 2;
+            
+        }
+    }
 }
