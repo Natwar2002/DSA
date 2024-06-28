@@ -46,4 +46,35 @@ class Heap {
             } else break;
         }
     }
+
+    get() {
+        return this.arr[0];
+    }
+}
+
+class Trip {
+    constructor(n, d, v) {
+        this.n = n;
+        this.d = d;
+        this.v = v;
+    }
+}
+
+var kthSmallestPrimeFraction = function (arr, k) {
+    let n = arr.length;
+    let hp = new Heap((t1, t2) => t1.v > t2.v);
+
+    for(let i = 0; i < n; i++) {
+        hp.insert(new Trip(0, i, arr[0]/arr[i]));
+    }
+
+    for(let i = 0; i < k - 1; i++) {
+        let el = hp.get();
+        hp.remove();
+
+        if(el.n < arr.length - 1) {
+            hp.insert(new Trip(el.n+1, el.d, arr[el.n+1]/arr[el.d]));
+        }
+    }
+    return [arr[hp.get().n], arr[hp.get().d]];
 }
