@@ -15,4 +15,4 @@ var allPathsSourceTarget = function (graph) {
     res = [];
     dfs(0, [0]);
     return res;
-}
+};
