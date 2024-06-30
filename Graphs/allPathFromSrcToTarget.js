@@ -1,10 +1,10 @@
 let res, g;
 
 function dfs(src, ans) {
-    if(src == g.length - 1) {
+    if (src == g.length - 1) {
         res.push(ans);
     }
-    for(let neighbour of g[src]) {
+    for (let neighbour of g[src]) {
         // dfs(neighbour, ans.concat([neighbour]));
         dfs(neighbour, [...ans, neighbour]);
     }
