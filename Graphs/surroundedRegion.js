@@ -14,7 +14,7 @@ function bfs(b) {
         }
     }
     while(q.length > 0) {
-        let cur = q.shift();
+        let cur = q.shift()
         for(let [dx, dy] of neighbours) {
             let nx = cur[0] + dx;
             let ny = cur[1] + dy;
