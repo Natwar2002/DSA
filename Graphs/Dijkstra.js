@@ -5,11 +5,11 @@ class Heap {
     }
     insert(data) {
         this.arr.push(data);
-        return this.upheapify(this.arr.length - 1);
+        this.upheapify(this.arr.length - 1);
     }
     upheapify(i) {
         while(i > 0) {
-            pi = Math.floor((i-1)/2);
+            let pi = Math.floor((i-1)/2);
             if(this.cmp(this.arr[pi], this.arr[i])) {
                 [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]];
                 i = pi;
@@ -17,6 +17,7 @@ class Heap {
         }
     }
     delete(){
+        if(this.isEmpty()) return;
         [this.arr[0], this.arr[this.arr.length - 1]] = [this.arr[this.arr.length - 1], this.arr[0]];
         this.arr.pop();
         this.downHeapify(0);
@@ -58,7 +59,7 @@ function dijkstra(graph, n, source) {
 
     while(!hp.isEmpty()) {
         let topmost = hp.root();
-        hp.remove();
+        hp.delete();
 
         let [node, distance] = topmost;
         if(visited.has(node)) continue;
@@ -66,9 +67,9 @@ function dijkstra(graph, n, source) {
 
         for(const neighbour of graph[node]) {
             let [neighbourNode, neighbourDistance] = neighbour;
-            if(visited.has(neighbour)) continue;
+            if(visited.has(neighbourNode)) continue;
             
-            if(via[neighbour] == undefined || distances[neighbourNode] > distance + neighbourDistance) {
+            if(via[neighbourNode] == undefined || distances[neighbourNode] > distance + neighbourDistance) {
                 via[neighbourNode] = node;
                 distances[neighbourNode] = distance + neighbourDistance;
                 hp.insert([neighbourNode, distance + neighbourDistance])
@@ -77,3 +78,17 @@ function dijkstra(graph, n, source) {
     }
     return [distances, via];
 }
+
+let n = 5;
+
+let graph = [
+    [[1, 4], [2, 8]],
+    [[0, 4], [2, 2], [3, 5]],
+    [[0, 8], [1, 2], [3, 5]],
+    [[1, 5], [2, 5], [4, 6]],
+    [[3, 6]]
+];
+
+let response = dijkstra(graph, n, 0);
+console.log("Distances :", response[0]);
+console.log("Via :", response[1]);
