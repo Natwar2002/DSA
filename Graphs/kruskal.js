@@ -19,7 +19,7 @@ function UNION (x, y, parent, size) {
     }
 }
 
-function Kruskal (edgeList, n) {
+function kruskals (edgeList, n) {
     edgeList.sort((e1, e2) => e1[2] - e2[2]) // Sort the edges by weight
     let SpanningTreeSum = 0;
     let parent = new Array(n).fill(0).map((item, index) => index);
@@ -34,3 +34,14 @@ function Kruskal (edgeList, n) {
     }
     return SpanningTreeSum;
 }
+
+let edgeList = [
+    [0, 1, 4],
+    [0, 2, 8],
+    [1, 2, 2],
+    [1, 3, 5],
+    [2, 3, 5],
+    [3, 4, 6]
+];
+let noOfVertices = 5;
+console.log(kruskals(edgeList, noOfVertices)); 

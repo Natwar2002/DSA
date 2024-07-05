@@ -25,7 +25,7 @@ class Heap {
     downHeapify(i) {
         while(i < this.arr.length) {
             let lc = (i * 2) + 1;
-            let rc = (1 * 2) + 2;
+            let rc = (i * 2) + 2;
             let max = i;
             if(lc < this.arr.length && this.cmp(this.arr[max], this.arr[lc])) max = lc;
             if(rc < this.arr.length && this.cmp(this.arr[max], this.arr[rc])) max = rc;
