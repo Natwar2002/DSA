@@ -1,18 +1,18 @@
 function mergeTwoSortedArrays (left, right) {
     let m = left.length;
     let n = right.length;
-    let result = Array();
+    let result = new Array(m + n);
     let i = 0, j = 0, k = 0;
     while(i < m && j < n) {
         if (left[i] <= right[j]) {
             result[k] = left[i];
-            k++;
             i++;
+            k++;
         } else {
             result[k] = right[j];
-            k++;
             j++; 
-        }
+            k++;
+        } 
     }
 
     while(i < m) {
@@ -36,7 +36,7 @@ function mergeSortHelper(arr, start, end) {
         // return res;
         return [arr[start]];
     }
-    let mid = end + Math.floor((end - start)/2);
+    let mid = start + Math.floor((end - start)/2);
     let left = mergeSortHelper(arr, start, mid);
     let right = mergeSortHelper(arr, mid + 1, end);
     return mergeTwoSortedArrays(left, right);
