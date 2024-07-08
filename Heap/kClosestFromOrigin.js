@@ -40,7 +40,6 @@ class Heap {
         this.arr.pop();
         this.downHeapify(0);
     }
-
     isEmpty() {
         return this.arr.length == 0;
     }
