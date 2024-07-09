@@ -9,10 +9,10 @@ class Heap {
             let pi = Math.floor((i - 1) / 2);
             if(this.cmp(this.arr[pi], this.arr[i])) {
                 [this.arr[pi], this.arr[i]] = [this.arr[i], this.arr[pi]];
+                i = pi;
             } else {
                 break;
             }
-            i = pi;
         }
     }
 
@@ -30,9 +30,8 @@ class Heap {
             if(rc < this.arr.length && this.cmp(this.arr[max], this.arr[rc])) max = rc;
             if(i != max) {
                 [this.arr[max], this.arr[i]] = [this.arr[i], this.arr[max]];
+                i = max;
             } else break;
-
-            i = max;
         }
     }
 
