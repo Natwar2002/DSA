@@ -1,5 +1,5 @@
 class node {
-    constructor (val) {
+    constructor(val) {
         this.val = val;
         this.next = null;
     }
@@ -13,7 +13,7 @@ var addTwoNumbers = function (l1, l2) {
     let res = dummy;
     let total = 0, carry = 0;
 
-    while(l1 != null || l2 != null || carry != 0) {
+    while (l1 != null || l2 != null || carry != 0) {
         total = carry;
 
         if (l1 != null) {
