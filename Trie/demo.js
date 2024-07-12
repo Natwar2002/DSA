@@ -1,5 +1,5 @@
 class node {
-    constructor (data) {
+    constructor(data) {
         this.data = data;
         this.isTerminal = false;
         this.children = {};
@@ -13,9 +13,9 @@ class Trie {
 
     insert(word) {
         let cur = this.root;
-        for(let i = 0; i < word.length; i++){
+        for (let i = 0; i < word.length; i++) {
             const c = word[i];
-            if(cur.children[c]) {
+            if (cur.children[c]) {
                 cur = cur.children[c];
             } else {
                 cur.children[c] = new node(c);
@@ -27,9 +27,9 @@ class Trie {
 
     search(word) {
         let cur = this.root;
-        for(let i = 0; i < word.length; i++) {
+        for (let i = 0; i < word.length; i++) {
             const c = word[i];
-            if(cur.children[c]) {
+            if (cur.children[c]) {
                 cur = cur.children[c];
             } else {
                 return false;
@@ -40,9 +40,9 @@ class Trie {
 
     startsWith(prefix) {
         let cur = this.root;
-        for(let i = 0; i < prefix.length; i++) {
+        for (let i = 0; i < prefix.length; i++) {
             const c = prefix[i];
-            if(cur.children[c]) {
+            if (cur.children[c]) {
                 cur = cur.children[c];
             } else {
                 return false;
