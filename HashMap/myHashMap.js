@@ -10,8 +10,8 @@ class MyLinkedList {
     constructor() {
         this.head = null;
     }
-    addAtHead(key, val) { 
-        if(this.head == null) {
+    addAtHead(key, val) {
+        if (this.head == null) {
             this.head = new Node(key, val);;
         } else {
             let n = new Node(key, val);
@@ -20,7 +20,7 @@ class MyLinkedList {
         }
     }
     deleteAtHead() {
-        if(this.head == null) return;
+        if (this.head == null) return;
         let nextHead = this.head.next;
         let nodeToBeDelete = this.head; // curr head
         this.head = nextHead;
@@ -36,37 +36,37 @@ class HashMap {
         this.lambdaFactorThresholdLower = 0.25;
         this.arr = Array(this.maxSize);
 
-        for(let i = 0; i < this.maxSize; i++) {
+        for (let i = 0; i < this.maxSize; i++) {
             this.arr[i] = new MyLinkedList();
         }
     }
- 
+
     hashFunction(key) {
         let p = 101;
         let pow = 1;
         let M = this.maxSize;
         let ans = 0;
-        for(let i = 0; i < key.length; i++) {
+        for (let i = 0; i < key.length; i++) {
             let asciiValue = this.ascii(key, i);
             // ans = ans + asciiValue * pow;
             ans = ((ans % M) + ((asciiValue % M) * (pow % M)) % M) % M;
-            pow = ((pow % M) * (p % M)) % M;  
+            pow = ((pow % M) * (p % M)) % M;
         }
         return ans; // BucketIndex;
     }
-    
-    ascii (key, i) {
+
+    ascii(key, i) {
         return key.charCodeAt(i);
     }
 
-    insert (key, val) {
-        if(this.search(key)) {
+    insert(key, val) {
+        if (this.search(key)) {
             this.update(key, val);
             return;
         }
 
-        let newLambdaFactor = (this.curSize + 1)/this.maxSize;
-        if(newLambdaFactor >= this.lambdaFactorThreshold) {
+        let newLambdaFactor = (this.curSize + 1) / this.maxSize;
+        if (newLambdaFactor >= this.lambdaFactorThreshold) {
             this.rehash();
         }
 
@@ -78,12 +78,12 @@ class HashMap {
     update(key, val) {
         const bucketIndex = this.hashFunction(key);
         let temp = this.arr[bucketIndex].head;
-        if(temp.key == key) {
+        if (temp.key == key) {
             temp.val = val;
             return;
         }
-        while(temp != null) {
-            if(temp.key === key) {
+        while (temp != null) {
+            if (temp.key === key) {
                 temp.val = val;
                 return;
             }
@@ -94,15 +94,15 @@ class HashMap {
     rehash(factor = 2) {
         this.maxSize *= factor;
         let newArr = Array(this.maxSize);
-        for(let i = 0; i < this.maxSize; i++) {
+        for (let i = 0; i < this.maxSize; i++) {
             newArr[i] = new MyLinkedList();
         }
 
         const oldArray = this.arr;
         this.curSize = 0;
-        for(let i = 0; i < oldArray.length; i++) {
+        for (let i = 0; i < oldArray.length; i++) {
             let temp = oldArray[i].head;
-            while(temp != null) {
+            while (temp != null) {
                 let key = temp.key;
                 let val = temp.val;
 
@@ -118,11 +118,11 @@ class HashMap {
     search(key) {
         let bucketIndex = this.hashFunction(key);
         let temp = this.arr[bucketIndex].head;
-        if(temp != null && temp.key === key) {
+        if (temp != null && temp.key === key) {
             return temp.val;
         }
-        while(temp != null) {
-            if(temp.key === key) {
+        while (temp != null) {
+            if (temp.key === key) {
                 return temp.val;
             }
             temp = temp.next;
@@ -131,29 +131,29 @@ class HashMap {
     }
 
     remove(key) {
-        if(!this.search(key)) return;
-        
+        if (!this.search(key)) return;
+
         const bucketIndex = this.hashFunction(key);
         let temp = this.arr[bucketIndex].head;
 
-        if(temp.key === key) {
+        if (temp.key === key) {
             // remove node;
             this.arr[bucketIndex].deleteAtHead();
             this.curSize--;
-            const loadFactor = this.curSize/this.maxSize;
-            if(loadFactor < this.lambdaFactorThresholdLower) this.rehash(0.5);
+            const loadFactor = this.curSize / this.maxSize;
+            if (loadFactor < this.lambdaFactorThresholdLower) this.rehash(0.5);
             return;
         }
         // temp = temp.next;
 
-        while(temp != null) {
-            if(temp.next != null && temp.next.key === key) {
+        while (temp != null) {
+            if (temp.next != null && temp.next.key === key) {
                 let nodeToBeDel = temp.next;
                 temp.next = nodeToBeDel.next;
                 nodeToBeDel.next = null;
                 this.curSize--;
-                const loadFactor = this.curSize/this.maxSize;
-                if(loadFactor <= this.lambdaFactorThresholdLower) this.rehash(0.5);
+                const loadFactor = this.curSize / this.maxSize;
+                if (loadFactor <= this.lambdaFactorThresholdLower) this.rehash(0.5);
                 return;
             }
             temp = temp.next;
@@ -161,10 +161,10 @@ class HashMap {
     }
 
     display() {
-        for(let i = 0; i < this.arr.length; i++) {
+        for (let i = 0; i < this.arr.length; i++) {
             let temp = this.arr[i].head;
             let str = 'LL : ';
-            while(temp != null) {
+            while (temp != null) {
                 str += `( ${temp.key}, ${temp.val} ) ->`;
                 temp = temp.next;
             }
