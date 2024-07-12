@@ -59,7 +59,7 @@ class HashMap {
         for (let i = 0; i < key.length; i++) {
             // go to each character of given
             let asciiValue = this.ascii(key, i);
-            
+
             ans = ((ans % C) + ((asciiValue % C) * (pow % C)) % C) % C;
             // for next iteration we will incremement the power
             pow = ((pow % C) * p % C) % C;
@@ -120,17 +120,17 @@ class HashMap {
     // }
 
     remove(key) {
-        if(!this.search(key)) return null;
+        if (!this.search(key)) return null;
         const bucketIndex = this.hashFunction(key);
         let temp = this.arr[bucketIndex].head;
-        if(temp.key == key) {
+        if (temp.key == key) {
 
         }
 
         // while(temp != null) {
         //     if(temp != null && temp.next.key === key) {
-                
-                
+
+
         //     }
         //     temp = temp.next;
         // }
@@ -174,7 +174,7 @@ class HashMap {
 
                 const bucketIndex = this.hashFunction(key);
                 newArr[bucketIndex].addAtHead(key, value);
-                
+
                 temp = temp.next;
             }
         }
